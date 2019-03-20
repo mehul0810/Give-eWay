@@ -4,9 +4,9 @@
  *
  * @package    Give
  * @subpackage Give/Admin/Give_Eway_Admin_Settings
- * @copyright  Copyright (c) 2018, WordImpress
+ * @copyright  Copyright (c) 2019, GiveWP
  * @license    https://opensource.org/licenses/gpl-license GNU Public License
- * @since      1.0
+ * @since      1.0.0
  */
 
 // Exit if accessed directly.
@@ -17,22 +17,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( ! class_exists( 'Give_Eway_Admin_Settings' ) ) :
 
+	/**
+	 * Class Give_Eway_Admin_Settings
+	 * 
+	 * @since 1.0.0
+	 */
 	class Give_Eway_Admin_Settings {
 
 		/**
 		 * Instance.
 		 *
-		 * @since  1.0
-		 * @access static
+		 * @since  1.0.0
+		 * @access private
 		 *
 		 * @var object $instance
 		 */
-		static private $instance;
+		private static $instance;
 
 		/**
 		 * Payment gateways ID
 		 *
-		 * @since 1.0
+		 * @since 1.0.0
 		 *
 		 * @var string $gateways_id
 		 */
@@ -41,7 +46,7 @@ if ( ! class_exists( 'Give_Eway_Admin_Settings' ) ) :
 		/**
 		 * Payment gateways label
 		 *
-		 * @since 1.0
+		 * @since 1.0.0
 		 *
 		 * @var string $gateways_label
 		 */
@@ -50,7 +55,7 @@ if ( ! class_exists( 'Give_Eway_Admin_Settings' ) ) :
 		/**
 		 * Singleton pattern.
 		 *
-		 * @since  1.0
+		 * @since  1.0.0
 		 * @access private
 		 *
 		 * Give_Eway_Admin_Settings constructor.
@@ -62,11 +67,11 @@ if ( ! class_exists( 'Give_Eway_Admin_Settings' ) ) :
 		 * Get instance.
 		 *
 		 * @since  1.0
-		 * @access static
+		 * @access private
 		 *
 		 * @return static
 		 */
-		static function get_instance() {
+		private static function get_instance() {
 			if ( null === static::$instance ) {
 				self::$instance = new static();
 			}
@@ -104,7 +109,7 @@ if ( ! class_exists( 'Give_Eway_Admin_Settings' ) ) :
 		public function register_gateway( $gateways ) {
 			$gateways[ $this->gateways_id ] = array(
 				'admin_label'    => $this->gateways_label,
-				'checkout_label' => give_eway_get_payment_method_label(),
+				'checkout_label' => __( 'eWay', 'give-eway' ),
 			);
 
 			return $gateways;
