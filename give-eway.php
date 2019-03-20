@@ -3,12 +3,15 @@
  * Plugin Name: Give - eWay
  * Plugin URI:  https://givewp.com/addons/eway/
  * Description: Adds eWay Gateway support.
- * Version:     1.0
- * Author:      WordImpress
- * Author URI:  https://wordimpress.com
+ * Version:     1.0.0
+ * Author:      GiveWP
+ * Author URI:  https://givewp.com
  * Text Domain: give-eway
  * Domain Path: /languages
- * GitHub URI: https://github.com/WordImpress/Give-eWay.git
+ * GitHub URI: https://github.com/impress-org/give-eway.git
+ *
+ * @package    Give
+ * @subpackage eWay Gateway
  */
 
 // Exit if accessed directly.
@@ -85,11 +88,11 @@ if ( ! class_exists( 'Give_Eway' ) ) :
 		public function setup_constants() {
 
 			if ( ! defined( 'GIVE_EWAY_VERSION' ) ) {
-				define( 'GIVE_EWAY_VERSION', '1.0' );
+				define( 'GIVE_EWAY_VERSION', '1.0.0' );
 			}
 
 			if ( ! defined( 'GIVE_EWAY_MIN_GIVE_VER' ) ) {
-				define( 'GIVE_EWAY_MIN_GIVE_VER', '2.0' );
+				define( 'GIVE_EWAY_MIN_GIVE_VER', '2.5.0' );
 			}
 
 			if ( ! defined( 'GIVE_EWAY_PLUGIN_FILE' ) ) {
@@ -117,9 +120,12 @@ if ( ! class_exists( 'Give_Eway' ) ) :
 		 */
 		private function includes() {
 
+			// Load eWay PHP SDK.
+			require_once GIVE_EWAY_PLUGIN_DIR . '/vendor/autoload.php';
+
 			if ( is_admin() ) {
 				require_once GIVE_EWAY_PLUGIN_DIR . '/includes/admin/plugin-activation.php';
-				require_once GIVE_EWAY_PLUGIN_DIR . '/includes/admin/class-admin-settings.php';
+				require_once GIVE_EWAY_PLUGIN_DIR . '/includes/admin/class-eway-admin-settings.php';
 			}
 
 			require_once GIVE_EWAY_PLUGIN_DIR . '/includes/actions.php';
